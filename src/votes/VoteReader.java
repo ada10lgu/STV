@@ -1,11 +1,9 @@
-package reading;
+package votes;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
-
-import votes.Vote;
 
 public class VoteReader {
 
