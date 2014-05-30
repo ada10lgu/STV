@@ -1,0 +1,4 @@
+STV
+===
+
+Single transferable vote
