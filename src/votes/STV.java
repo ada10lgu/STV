@@ -3,12 +3,23 @@ package votes;
 import java.io.File;
 import java.io.IOException;
 
+
+/**
+ * STV.class
+ *  
+ * @author Lars "mezz" Gustafson (mezz@dsek.lth.se)
+ * @version 1
+ * 
+ * Voting system based on the Single Transferable Vote system made by Hare–Clark.
+ * 
+ * For wiki article about STV refer to:
+ * http://en.wikipedia.org/wiki/Single_transferable_vote
+ */
 public class STV {
 
 	private static boolean verbose;
 
 	public static void main(String[] args) {
-
 		String file = null;
 		int seats = -1;
 
@@ -29,7 +40,6 @@ public class STV {
 					try {
 						seats = Integer.parseInt(args[i]);
 					} catch (NumberFormatException e) {
-
 						System.out.println(args[i]);
 						error("Illegal seat ammount.");
 					}
@@ -60,21 +70,34 @@ public class STV {
 			System.out.println(s.getName());
 	}
 
+	/**
+	 * Used to print information if user selected verbose output
+	 */
 	public static void println() {
 		if (verbose)
 			System.out.println();
 	}
 
+	/**
+	 * Used to print information if user selected verbose output
+	 */
 	public static void println(Object o) {
 		if (verbose)
 			System.out.println(o);
 	}
 
+	/**
+	 * Used to print information if user selected verbose output
+	 */
 	public static void printf(String s, Object... o) {
 		if (verbose)
 			System.out.printf(s, o);
 	}
 
+	/**
+	 * Prints an error message and terminates the program if error found
+	 * Will also show the correct parameters to use
+	 */
 	private static void error(String message) {
 		System.out.println("Error when running STV-voting system");
 		System.out.println("Message: " + message);
@@ -85,8 +108,7 @@ public class STV {
 		System.out.println("-f indicates what file to be read from");
 		System.out.println("-v verbose");
 		System.out.println("-s ammount of seats to fill");
-
-		System.exit(0);
+		System.exit(1);
 	}
 
 }

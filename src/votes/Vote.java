@@ -1,5 +1,13 @@
 package votes;
 
+/**
+ * Vote.class
+ * 
+ * @author Lars "mezz" Gustafson (mezz@dsek.lth.se)
+ * @version 1
+ * 
+ *          Represents a vote. One vote from one person.
+ */
 public class Vote {
 	private int[] votes;
 
@@ -28,6 +36,14 @@ public class Vote {
 		return sb.toString();
 	}
 
+	/**
+	 * Return the person the votee voted at, round is used to select if it is
+	 * the first second or so on choice.
+	 * 
+	 * @param round
+	 *            att what round we are inspecting.
+	 * @return the person the votee voted at
+	 */
 	public int getPerson(int round) {
 		if (round >= votes.length)
 			return -1;
