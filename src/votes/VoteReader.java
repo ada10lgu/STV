@@ -2,6 +2,7 @@ package votes;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -54,8 +55,17 @@ public class VoteReader {
 		return names;
 	}
 
-	public HashMap<Vote, Integer> getGroupedVotes() {
-		return groupedVotes;
+	public ArrayList<WheightedVote> getGroupedVotes() {
+		ArrayList<WheightedVote> wv = new ArrayList<>();
+
+		for (Vote v: groupedVotes.keySet())
+			wv.add(new WheightedVote(v, groupedVotes.get(v)));
+		
+		return wv;
+	}
+	
+	public int getQuota(int seats) {
+		return (votes.length/(seats+1))+1;
 	}
 
 }

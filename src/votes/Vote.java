@@ -27,4 +27,10 @@ public class Vote {
 			sb.append("-").append(votes[i]);
 		return sb.toString();
 	}
+
+	public int getPerson(int round) {
+		if (round >= votes.length)
+			return -1;
+		return votes[round];
+	}
 }

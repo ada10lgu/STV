@@ -12,8 +12,8 @@ public class GenerateVoteFile {
 	public static void main(String[] args) throws FileNotFoundException {
 		
 		int sead = 5;
-		int namesN = 3;
-		int votesN = 15;
+		int namesN = 35;
+		int votesN = 12000;
 		File f = new File("files/fake_data/data-"+namesN+"-"+votesN+"-"+sead);
 		
 		String[] names = getRandomNames(namesN, sead); 
@@ -82,7 +82,27 @@ public class GenerateVoteFile {
 		randomNames.add("Kaelyn Kimberley");
 		randomNames.add("Phoebe Nibley");
 		randomNames.add("Katarina Allerton");
-
+		randomNames.add("Beacher Stamper");
+		randomNames.add("Terrance Thornton");
+		randomNames.add("Nash Swailes");
+		randomNames.add("Tripp Webb");
+		randomNames.add("Clarence Mildenhall");
+		randomNames.add("Pat Whitley");
+		randomNames.add("Raymond Fulton");
+		randomNames.add("Lyre Spooner");
+		randomNames.add("Truman Pickering");
+		randomNames.add("Glenn Home");
+		randomNames.add("Palma Claridge");
+		randomNames.add("Shandy Notley");
+		randomNames.add("Roberta Southey");
+		randomNames.add("Christa Ward");
+		randomNames.add("Kenzie Sutton");
+		randomNames.add("Skye Cheek");
+		randomNames.add("Isabela Reid");
+		randomNames.add("Anita Penny");
+		randomNames.add("Julianne Beckwith");
+		randomNames.add("Virginia Oakley");
+		
 		Random r = new Random(sead);
 
 		String[] names = new String[n];
