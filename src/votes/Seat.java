@@ -35,19 +35,16 @@ public class Seat {
 	public void redistributeVotes(int quota, Seat[] seats) {
 		if (votes() >= quota) {
 			status = Status.WON;
-			
+
 			double transferable = 0;
 			for (WheightedVote v : votes)
 				if (v.lookNext() != -1)
 					transferable += v.getWeight();
-			double factor = (votes()-quota)/transferable;
-			System.out.println(transferable);
-			System.out.println(factor);
-			
+			double factor = (votes() - quota) / transferable;
+
 			for (WheightedVote v : votes)
 				v.updateWheight(factor);
-			
-			
+
 		} else {
 			status = Status.LOST;
 		}
@@ -91,11 +88,10 @@ public class Seat {
 
 		return sb.toString();
 	}
-	
+
 	public boolean isPending() {
 		return status == Status.PENDING;
 	}
-
 
 	public boolean lost() {
 		return status == Status.LOST;

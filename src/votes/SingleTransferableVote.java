@@ -1,28 +1,12 @@
 package votes;
 
-import java.io.File;
-import java.io.IOException;
-
 public class SingleTransferableVote {
-
-	public static void main(String[] args) throws IOException {
-		VoteReader vr = new VoteReader(
-				new File("files/fake_data/data-35-12000-5"));
-		int seats = 27;
-		Seat[] winners = new SingleTransferableVote(vr, seats).calculateWinners();
-		
-		System.out.println("The winners are:");
-		for (Seat s : winners)
-			System.out.println(s.getName());
-	}
 
 	private Seat[] seats;
 	private int quota;
 	private int seatsToFill;
 
 	public SingleTransferableVote(VoteReader vr, int seats) {
-		
-		System.out.println(vr.getGroupedVotes());
 		seatsToFill = seats;
 		this.seats = new Seat[vr.getNames().length];
 
@@ -30,42 +14,42 @@ public class SingleTransferableVote {
 
 		for (int i = 0; i < vr.getNames().length; i++)
 			this.seats[i] = new Seat(vr.getNames()[i]);
-		for (WheightedVote v : vr.getGroupedVotes()) {
+		for (WheightedVote v : vr.getGroupedVotes())
 			this.seats[v.getNext()].addVote(v);
-		}
 	}
 
 	public Seat[] calculateWinners() {
-		System.out.printf("Quota is %d\n\n",quota);
-		
-		
+		STV.printf("Quota is %d\n\n", quota);
+
 		int seatsFilled = 0;
 		int peopleLeft = seats.length;
 		Seat current;
 		int round = 0;
 		while (peopleLeft + seatsFilled != seatsToFill) {
-			System.out.println("Round " + ++round);
+			STV.println("Round " + ++round);
 			printSeats();
-			System.out.println();
-			
+			STV.println();
+
 			current = getHeighest();
 			if (current.votes() >= quota) {
-				System.out.printf("%s is declared a winner and its access votes will be redistributed\n",current.getName());
+				STV.printf("%s is declared a winner and its access votes will be redistributed\n",
+								current.getName());
 				seatsFilled++;
 				peopleLeft--;
 			} else {
 				current = getLowest();
-				System.out.printf("Since no winner existed we remove the one with fewest votes, in this case %s\n",current.getName());
+				STV.printf("Since no winner existed we remove the one with fewest votes, in this case %s\n",
+								current.getName());
 				peopleLeft--;
 			}
 			current.redistributeVotes(quota, seats);
-			System.out.println();
-			System.out.println();
+			STV.println();
+			STV.println();
 		}
-		
-		Seat[] winners = new Seat[seatsToFill]; 
+
+		Seat[] winners = new Seat[seatsToFill];
 		int n = 0;
-		for (Seat s : seats) 
+		for (Seat s : seats)
 			if (!s.lost())
 				winners[n++] = s;
 		return winners;
@@ -73,7 +57,7 @@ public class SingleTransferableVote {
 
 	private void printSeats() {
 		for (Seat s : this.seats)
-			System.out.println(s);
+			STV.println(s);
 	}
 
 	private Seat getLowest() {
@@ -85,7 +69,6 @@ public class SingleTransferableVote {
 				current = s;
 			}
 		}
-		
 		return current;
 	}
 
